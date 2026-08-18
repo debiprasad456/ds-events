@@ -1,0 +1,141 @@
+.footer {
+  background-color: #17121C; /* Dark plum shade background */
+  color: #DDD8E4;
+  padding-top: 60px;
+  border-top: 1px solid rgba(131, 24, 95, 0.15);
+  margin-top: auto;
+}
+
+.footer-top {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 40px;
+  padding-bottom: 40px;
+}
+
+@media (max-width: 992px) {
+  .footer-top {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.footer-logo .logo-title {
+  color: #FFFFFF;
+}
+
+.footer-logo .logo-subtitle {
+  color: #A9A2B4;
+}
+
+.footer-tagline {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #A9A2B4;
+  max-width: 320px;
+}
+
+.footer-links-group h3,
+.footer-contact h3 {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+  position: relative;
+}
+
+.footer-links-group h3::after,
+.footer-contact h3::after {
+  content: '';
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background-color: var(--primary);
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  font-size: 15px;
+  color: #A9A2B4;
+  transition: var(--transition);
+}
+
+.footer-links a:hover {
+  color: #FFFFFF;
+  padding-left: 6px;
+}
+
+.footer-contact p {
+  font-size: 15px;
+  color: #A9A2B4;
+  margin-bottom: 12px;
+}
+
+.footer-contact a {
+  color: #A9A2B4;
+  transition: var(--transition);
+}
+
+.footer-contact a:hover {
+  color: #FFFFFF;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 24px 0;
+  font-size: 14px;
+  color: #8C8496;
+}
+
+.footer-bottom-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .footer-bottom-container {
+    flex-direction: column;
+    gap: 16px;
+    text-align: center;
+  }
+}
+
+.footer-socials {
+  display: flex;
+  gap: 20px;
+}
+
+.footer-socials a {
+  color: #8C8496;
+  transition: var(--transition);
+}
+
+.footer-socials a:hover {
+  color: #FFFFFF;
+}
