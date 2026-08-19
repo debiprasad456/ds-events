@@ -1,35 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HeroSlider from '../components/HeroSlider';
+import TestimonialsSection from '../components/TestimonialsSection';
 import './AboutUs.css';
 import aboutUsImg from '../assets/images/about-us.png';
 
-export default function AboutUs() {
+export default function AboutUs({ onOpenQuote }) {
   return (
     <div className="about-page fade-in">
-      {/* Hero Section */}
-      <header className="about-hero">
-        <div className="about-hero-content container">
-          <p className="hero-subtitle">DS Events- where every celebration comes Alive</p>
-          <h1 className="hero-title">Crafting Moments That Matter</h1>
-          <p className="hero-description">
-            We are premier event planners specializing in transforming your corporate visions, milestone celebrations, and grand stages into extraordinary realities.
-          </p>
-          <div className="hero-ctas">
-            <Link to="/services" className="btn btn-primary">Our Services</Link>
-            <Link to="/contact" className="btn btn-secondary">Get In Touch</Link>
-          </div>
-        </div>
-        {/* Placeholder for Hero Image/Video */}
-        <div className="hero-image-placeholder">
-          <div className="placeholder-overlay"></div>
-        </div>
-      </header>
-      
-      {/* Introduction Section */}
-      <section className="about-intro container section-padding">
+      {/* Full-bleed Kyato-Style Hero Banner Slider */}
+      <HeroSlider onOpenQuote={onOpenQuote} />
+
+      {/* Introduction Section / Who We Are */}
+      <section className="about-intro container section-padding" id="about-intro">
         <div className="intro-grid">
           <div className="intro-text">
-            <h2 className="section-title">Who We Are</h2>
+            <span className="section-tag">WHO WE ARE</span>
+            <h2 className="section-title">Transforming Ideas Into Extraordinary Events</h2>
             <p className="intro-lead">
               We create experiences that inspire, connect, and leave lasting impressions.
             </p>
@@ -45,23 +32,38 @@ export default function AboutUs() {
             <p>
               Over the years, we have built a reputation for creating seamless, impactful, and unforgettable experiences that engage audiences and achieve results.
             </p>
+
+            {/* Statistics Counters */}
             <div className="stats-grid">
               <div className="stat-card">
-                <h3>150+</h3>
-                <p>Events Managed</p>
+                <span className="stat-number">150+</span>
+                <span className="stat-label">Events Managed</span>
               </div>
               <div className="stat-card">
-                <h3>13+</h3>
-                <p>Event Categories</p>
+                <span className="stat-number">13+</span>
+                <span className="stat-label">Event Categories</span>
               </div>
               <div className="stat-card">
-                <h3>99%</h3>
-                <p>Client Satisfaction</p>
+                <span className="stat-number">99%</span>
+                <span className="stat-label">Client Satisfaction</span>
               </div>
             </div>
           </div>
+
           <div className="intro-image-container">
-            <img src={aboutUsImg} alt="About DS Events" className="intro-image" />
+            <div className="intro-image-frame">
+              <img 
+                src={aboutUsImg} 
+                alt="About DS Events Setup" 
+                className="intro-image" 
+                loading="lazy"
+                decoding="async"
+              />
+              <div className="experience-badge">
+                <span className="exp-count">#1</span>
+                <span className="exp-text">Event Planners in Odisha</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -69,55 +71,88 @@ export default function AboutUs() {
       {/* Why Choose Us */}
       <section className="about-why section-padding">
         <div className="container">
-          <h2 className="section-title text-center">Why Work With Us</h2>
-          <p className="section-subtitle text-center">
-            Our mission is simple: to turn moments into memories and ideas into remarkable experiences.<br/>
-            Whether you're planning an intimate celebration or a large-scale corporate event, we're here to make it exceptional.
-          </p>
+          <div className="section-header text-center">
+            <span className="section-tag">WHY CHOOSE US</span>
+            <h2 className="section-title">Why Work With Us</h2>
+            <p className="section-subtitle">
+              Our mission is simple: to turn moments into memories and ideas into remarkable experiences.<br/>
+              Whether you're planning an intimate celebration or a large-scale corporate event, we're here to make it exceptional.
+            </p>
+          </div>
           
           <div className="why-grid">
             <div className="why-card">
-              <div className="why-icon">✦</div>
+              <div className="why-icon-circle">
+                <span>✦</span>
+              </div>
               <h3>Innovative Concepts</h3>
-              <p>Creative and innovative event concepts</p>
+              <p>Creative and innovative event concepts tailored to your personal aesthetic or corporate brand.</p>
             </div>
             <div className="why-card">
-              <div className="why-icon">✦</div>
+              <div className="why-icon-circle">
+                <span>✦</span>
+              </div>
               <h3>Comprehensive Planning</h3>
-              <p>End-to-end event planning and management</p>
+              <p>End-to-end event planning, scheduling, vendor coordination, and turnkey management.</p>
             </div>
             <div className="why-card">
-              <div className="why-icon">✦</div>
+              <div className="why-icon-circle">
+                <span>✦</span>
+              </div>
               <h3>Expert Team</h3>
-              <p>Experienced and dedicated professionals</p>
+              <p>Experienced and dedicated event professionals orchestrating lighting, sound, decor, and hospitality.</p>
             </div>
             <div className="why-card">
-              <div className="why-icon">✦</div>
+              <div className="why-icon-circle">
+                <span>✦</span>
+              </div>
               <h3>Strong Partnerships</h3>
-              <p>Strong vendor and venue partnerships</p>
+              <p>Direct partnerships with premium venues, caterers, artists, and production suppliers in Odisha.</p>
             </div>
             <div className="why-card">
-              <div className="why-icon">✦</div>
+              <div className="why-icon-circle">
+                <span>✦</span>
+              </div>
               <h3>Flawless Execution</h3>
-              <p>Attention to detail and flawless execution</p>
+              <p>Rigorous attention to detail, timeline precision, and on-ground crisis management.</p>
             </div>
             <div className="why-card">
-              <div className="why-icon">✦</div>
+              <div className="why-icon-circle">
+                <span>✦</span>
+              </div>
               <h3>Tailored Solutions</h3>
-              <p>Customized solutions tailored to your goals</p>
+              <p>Customized packages and flexible solutions built around your exact budget and vision.</p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Call to Action */}
+      {/* Testimonials */}
+      <TestimonialsSection />
+
+      {/* Call to Action Banner */}
       <section className="about-cta container section-padding">
         <div className="cta-banner">
-          <h2>Ready to bring your dream event to life?</h2>
-          <p>Let's collaborate to make your next project a resounding success.</p>
-          <Link to="/contact" className="btn btn-accent">Plan Your Event &rarr;</Link>
+          <div className="cta-content">
+            <span className="cta-sub">LET'S COLLABORATE</span>
+            <h2>Ready to bring your dream event to life?</h2>
+            <p>Let's collaborate to make your next project a resounding success.</p>
+          </div>
+          <div className="cta-actions">
+            <Link to="/contact" className="cta-btn primary">
+              Plan Your Event &rarr;
+            </Link>
+            <button 
+              type="button" 
+              className="cta-btn secondary"
+              onClick={() => onOpenQuote && onOpenQuote('quote')}
+            >
+              Get Quick Estimate
+            </button>
+          </div>
         </div>
       </section>
     </div>
   );
 }
+

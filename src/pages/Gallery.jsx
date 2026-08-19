@@ -64,82 +64,79 @@ export default function Gallery() {
     : galleryData.filter(item => item.category === filter);
 
   return (
-    <>
-      <div className="gallery-page fade-in">
-        <div className="gallery-header container">
-          <h1 className="gallery-title">Our Work Gallery</h1>
-          <p className="gallery-subtitle">
-            A glimpse into the stunning setups, stages, and moments we have captured across different events.
-          </p>
+    <div className="gallery-page fade-in">
+      <div className="gallery-header container">
+        <span className="section-tag">PORTFOLIO</span>
+        <h1 className="gallery-title">Our Work Gallery</h1>
+        <p className="gallery-subtitle">
+          A glimpse into the stunning setups, stages, and moments we have captured across different events in Odisha.
+        </p>
 
-          {/* Filter Toolbar */}
-          <div className="gallery-filters">
-            <button className={`filter-tab ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>All</button>
-            <button className={`filter-tab ${filter === 'corporate' ? 'active' : ''}`} onClick={() => setFilter('corporate')}>Corporate</button>
-            <button className={`filter-tab ${filter === 'weddings' ? 'active' : ''}`} onClick={() => setFilter('weddings')}>Weddings</button>
-            <button className={`filter-tab ${filter === 'stage' ? 'active' : ''}`} onClick={() => setFilter('stage')}>Stage Shows</button>
-            <button className={`filter-tab ${filter === 'fashion' ? 'active' : ''}`} onClick={() => setFilter('fashion')}>Fashion</button>
-          </div>
+        {/* Filter Toolbar */}
+        <div className="gallery-filters">
+          <button className={`filter-tab ${filter === 'all' ? 'active' : ''}`} onClick={() => setFilter('all')}>All ({galleryData.length})</button>
+          <button className={`filter-tab ${filter === 'corporate' ? 'active' : ''}`} onClick={() => setFilter('corporate')}>Corporate</button>
+          <button className={`filter-tab ${filter === 'weddings' ? 'active' : ''}`} onClick={() => setFilter('weddings')}>Weddings</button>
+          <button className={`filter-tab ${filter === 'stage' ? 'active' : ''}`} onClick={() => setFilter('stage')}>Stage Shows</button>
+          <button className={`filter-tab ${filter === 'fashion' ? 'active' : ''}`} onClick={() => setFilter('fashion')}>Fashion</button>
         </div>
+      </div>
 
-        {/* Masonry / Grid Layout */}
-        <section className="gallery-grid-container container">
-          <div className="gallery-grid">
-            {filteredItems.map(item => (
-              <div 
-                key={item.id} 
-                className={`gallery-item ${item.span}`}
-                onClick={() => setSelectedItem(item)}
-              >
-                {item.imageUrl ? (
-                  <img src={item.imageUrl} alt={item.title} className="gallery-image" />
-                ) : (
-                  <div className="gallery-card-placeholder">
-                    <div className="placeholder-inner">
-                      <span className="camera-icon">📷</span>
-                      <p className="placeholder-note">{item.title} Photo Placeholder</p>
-                    </div>
-                  </div>
-                )}
-                <div className="gallery-item-overlay">
-                  <div className="overlay-content">
-                    <span className="overlay-tag">{item.tag}</span>
-                    <h3>{item.title}</h3>
-                    <span className="view-more">View Photo &rarr;</span>
+      {/* Masonry / Grid Layout */}
+      <section className="gallery-grid-container container">
+        <div className="gallery-grid">
+          {filteredItems.map(item => (
+            <div 
+              key={item.id} 
+              className={`gallery-item ${item.span}`}
+              onClick={() => setSelectedItem(item)}
+            >
+              {item.imageUrl ? (
+                <img 
+                  src={item.imageUrl} 
+                  alt={item.title} 
+                  className="gallery-image" 
+                  loading="lazy"
+                  decoding="async"
+                />
+              ) : (
+                <div className="gallery-card-placeholder">
+                  <div className="placeholder-inner">
+                    <span className="camera-icon">📷</span>
+                    <p className="placeholder-note">{item.title} Photo Placeholder</p>
                   </div>
                 </div>
+              )}
+              <div className="gallery-item-overlay">
+                <div className="overlay-content">
+                  <span className="overlay-tag">{item.tag}</span>
+                  <h3>{item.title}</h3>
+                  <span className="view-more">View Photo &rarr;</span>
+                </div>
               </div>
-            ))}
-          </div>
-        </section>
-      </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
       {/* Lightbox Modal */}
       {selectedItem && (
-        <div className="lightbox" onClick={() => setSelectedItem(null)}>
-          <div className="lightbox-content" onClick={e => e.stopPropagation()}>
-            <button className="lightbox-close" onClick={() => setSelectedItem(null)}>&times;</button>
-            {selectedItem.imageUrl ? (
-              <div className="lightbox-image-wrapper">
-                <img src={selectedItem.imageUrl} alt={selectedItem.title} className="lightbox-image" />
-                <div className="lightbox-details">
-                  <div>
-                    <h2>{selectedItem.title}</h2>
-                    <span className="lightbox-tag" style={{ display: 'inline-block', marginTop: '8px' }}>{selectedItem.tag}</span>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="lightbox-image-placeholder">
-                <span className="camera-icon big">📷</span>
-                <h2>{selectedItem.title}</h2>
-                <p>Full Resolution Event Photograph (Placeholder)</p>
-                <span className="lightbox-tag">{selectedItem.tag}</span>
-              </div>
-            )}
+        <div className="lightbox-backdrop" onClick={() => setSelectedItem(null)}>
+          <div className="lightbox-dialog" onClick={(e) => e.stopPropagation()}>
+            <button className="lightbox-close" onClick={() => setSelectedItem(null)} aria-label="Close Lightbox">
+              &times;
+            </button>
+            <div className="lightbox-img-wrapper">
+              <img src={selectedItem.imageUrl} alt={selectedItem.title} className="lightbox-image" />
+            </div>
+            <div className="lightbox-caption">
+              <span className="lightbox-tag">{selectedItem.tag}</span>
+              <h3>{selectedItem.title}</h3>
+            </div>
           </div>
         </div>
       )}
-    </>
+    </div>
   );
 }
+

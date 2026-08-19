@@ -20,6 +20,7 @@ const servicesData = [
     id: 'corp',
     title: 'Corporate Events',
     category: 'corporate',
+    categoryLabel: 'Corporate & Commercial',
     description: 'Professional conferences, seminars, stakeholder meetings, team-building retreats, and gala dinners tailored to represent your corporate identity.',
     image: corporateImg
   },
@@ -27,6 +28,7 @@ const servicesData = [
     id: 'promo',
     title: 'Brand Promotions',
     category: 'corporate',
+    categoryLabel: 'Corporate & Commercial',
     description: 'Immersive brand activations, product launches, experiential pop-ups, and marketing campaigns designed to engage audiences and create buzz.',
     image: brandPromotionImg
   },
@@ -34,6 +36,7 @@ const servicesData = [
     id: 'awards',
     title: 'Award Nights',
     category: 'corporate',
+    categoryLabel: 'Corporate & Commercial',
     description: 'Glamorous and high-profile award ceremonies featuring state-of-the-art stage setups, dynamic lighting, and precise live production management.',
     image: awardNightImg
   },
@@ -41,6 +44,7 @@ const servicesData = [
     id: 'stage',
     title: 'Stage Shows',
     category: 'corporate',
+    categoryLabel: 'Entertainment & Stage',
     description: 'Large-scale theatrical stage designs, concert setups, live audio engineering, and complete talent orchestration for high-energy public spectacles.',
     image: stageShowImg
   },
@@ -48,6 +52,7 @@ const servicesData = [
     id: 'fashion',
     title: 'Fashion Shows',
     category: 'corporate',
+    categoryLabel: 'Fashion & Runway',
     description: 'Chic runway events with professional ramp configurations, lighting design, designer backstage coordination, and sleek media coverage setups.',
     image: fashionImg
   },
@@ -56,6 +61,7 @@ const servicesData = [
     id: 'parties',
     title: 'Parties',
     category: 'social',
+    categoryLabel: 'Social & Private',
     description: 'Theme parties, cocktail mixers, reunions, and customized social gatherings with excellent catering, design, and entertainment curation.',
     image: partiesImg
   },
@@ -63,6 +69,7 @@ const servicesData = [
     id: 'birthday',
     title: 'Birthdays',
     category: 'social',
+    categoryLabel: 'Social & Private',
     description: 'Creative and personalized birthday celebrations from whimsical kids parties with fun elements to elegant adult milestone events.',
     image: birthdayImg
   },
@@ -70,6 +77,7 @@ const servicesData = [
     id: 'wedding',
     title: 'Weddings',
     category: 'social',
+    categoryLabel: 'Weddings & Social',
     description: 'Fairytale wedding planning from engagement to reception. We design stunning setups, coordinate vendors, and manage all rituals flawlessly.',
     image: weddingImg
   },
@@ -77,6 +85,7 @@ const servicesData = [
     id: 'anniversary',
     title: 'Anniversaries',
     category: 'social',
+    categoryLabel: 'Social & Private',
     description: 'Heartwarming milestone anniversary celebrations with personalized themes, tribute presentations, and elegant dining arrangements.',
     image: anniversaryImg
   },
@@ -85,6 +94,7 @@ const servicesData = [
     id: 'edu',
     title: 'Educational Events',
     category: 'community',
+    categoryLabel: 'Community & Academic',
     description: 'Academic symposiums, campus orientations, university placement drives, science exhibitions, and guest lecture coordination.',
     image: educationalImg
   },
@@ -92,6 +102,7 @@ const servicesData = [
     id: 'cultural',
     title: 'Cultural Events',
     category: 'community',
+    categoryLabel: 'Community & Cultural',
     description: 'Spectacular community festivals, traditional dance showcases, multi-cultural fairs, and art exhibitions celebrating regional heritage.',
     image: culturalImg
   },
@@ -99,6 +110,7 @@ const servicesData = [
     id: 'political',
     title: 'Political Events',
     category: 'community',
+    categoryLabel: 'Community & Protocol',
     description: 'High-security press conferences, political rallies, town halls, speech venues, and leader hospitality with strict protocol adherence.',
     image: politicalImg
   },
@@ -106,12 +118,13 @@ const servicesData = [
     id: 'religious',
     title: 'Religious Events',
     category: 'community',
-    description: 'Spritual gatherings, temple festivals, community prayer halls, and traditional celebrations managed with appropriate decorum and respect.',
+    categoryLabel: 'Community & Traditional',
+    description: 'Spiritual gatherings, temple festivals, community prayer halls, and traditional celebrations managed with appropriate decorum and respect.',
     image: religiousImg
   }
 ];
 
-export default function Services() {
+export default function Services({ onOpenQuote }) {
   const [activeFilter, setActiveFilter] = useState('all');
 
   const filteredServices = activeFilter === 'all' 
@@ -121,19 +134,19 @@ export default function Services() {
   return (
     <div className="services-page fade-in">
       <div className="services-header container">
-        <h1 className="services-title">Our Event Services</h1>
+        <span className="section-tag">OUR EXPERTISE</span>
+        <h1 className="services-title">Event Planning & Hospitality Services</h1>
         <p className="services-subtitle">
-          We bring organization, beauty, and operational excellence to 13 distinct types of gatherings. 
-          Use the filters below to explore our services.
+          We bring organization, beauty, and operational excellence to 13 distinct types of gatherings across Odisha. Use the filters below to explore our comprehensive service offerings.
         </p>
 
         {/* Filter Tabs */}
-        <div className="filter-tabs">
+        <div className="services-filter-tabs">
           <button 
             className={`filter-btn ${activeFilter === 'all' ? 'active' : ''}`}
             onClick={() => setActiveFilter('all')}
           >
-            All Events
+            All Events ({servicesData.length})
           </button>
           <button 
             className={`filter-btn ${activeFilter === 'corporate' ? 'active' : ''}`}
@@ -161,26 +174,58 @@ export default function Services() {
         <div className="services-grid">
           {filteredServices.map(service => (
             <div key={service.id} className="service-card">
-              {service.image ? (
-                <div className="service-card-image">
-                  <img src={service.image} alt={service.title} />
-                </div>
-              ) : (
-                <div className="service-card-image-placeholder">
-                  <span className="placeholder-text">{service.title} Image</span>
-                </div>
-              )}
+              <div className="service-card-image-wrap">
+                {service.image ? (
+                  <img 
+                    src={service.image} 
+                    alt={service.title} 
+                    className="service-card-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                ) : (
+                  <div className="service-card-image-placeholder">
+                    <span className="placeholder-text">{service.title}</span>
+                  </div>
+                )}
+                <span className="service-category-badge">{service.categoryLabel}</span>
+              </div>
+              
               <div className="service-card-content">
-                <h3>{service.title}</h3>
-                <p>{service.description}</p>
+                <h3 className="service-card-title">{service.title}</h3>
+                <p className="service-card-desc">{service.description}</p>
                 <div className="service-card-footer">
-                  <span className="service-tag">{service.category}</span>
+                  <button 
+                    type="button" 
+                    className="service-inquire-btn"
+                    onClick={() => onOpenQuote && onOpenQuote(service.title)}
+                  >
+                    Inquire Service <span>&rarr;</span>
+                  </button>
                 </div>
               </div>
             </div>
           ))}
         </div>
       </section>
+
+      {/* Consultation CTA */}
+      <section className="services-bottom-cta container">
+        <div className="cta-box">
+          <div className="cta-box-text">
+            <h3>Need a Custom Event Solution?</h3>
+            <p>From custom stage engineering to bespoke hospitality arrangements, we build tailored packages.</p>
+          </div>
+          <button 
+            type="button" 
+            className="cta-btn primary"
+            onClick={() => onOpenQuote && onOpenQuote('quote')}
+          >
+            Request Custom Proposal &rarr;
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
+

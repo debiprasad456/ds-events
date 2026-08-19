@@ -61,29 +61,32 @@ export default function Contact() {
         
         {/* Info Column */}
         <div className="contact-info-col">
+          <span className="section-tag">GET IN TOUCH</span>
           <h1 className="contact-title">Let's Create Together</h1>
           <p className="contact-desc">
             Have an upcoming event? Contact us today for a free consultation. Our team is ready to design and execute your vision down to the finest detail.
           </p>
 
           <div className="info-items">
-            <div className="info-item">
-              <span className="info-icon">📍</span>
-              <div>
+            <div className="info-item-card">
+              <div className="info-icon-badge">📍</div>
+              <div className="info-text">
                 <h3>Our Office</h3>
                 <p>3521/8716, Palasuni, Rasulgarh, Bhubaneswar, Odisha 751025</p>
               </div>
             </div>
-            <div className="info-item">
-              <span className="info-icon">📞</span>
-              <div>
-                <h3>Phone & Whatsapp</h3>
+
+            <div className="info-item-card">
+              <div className="info-icon-badge">📞</div>
+              <div className="info-text">
+                <h3>Phone & WhatsApp</h3>
                 <p><a href="tel:+918260054398">+91 82600 54398</a></p>
               </div>
             </div>
-            <div className="info-item">
-              <span className="info-icon">✉️</span>
-              <div>
+
+            <div className="info-item-card">
+              <div className="info-icon-badge">✉️</div>
+              <div className="info-text">
                 <h3>Email Inquiries</h3>
                 <p><a href="mailto:diversesolutionsevents@gmail.com">diversesolutionsevents@gmail.com</a></p>
               </div>
@@ -91,8 +94,8 @@ export default function Contact() {
           </div>
 
           <div className="whatsapp-help-box">
-            <span className="whatsapp-logo">💬</span>
-            <div>
+            <div className="whatsapp-help-icon">💬</div>
+            <div className="whatsapp-help-content">
               <h3>Need a quick quote?</h3>
               <p>Chat directly with our planning lead on WhatsApp for instant assistance.</p>
               <a 
@@ -101,7 +104,7 @@ export default function Contact() {
                 rel="noopener noreferrer" 
                 className="whatsapp-chat-btn"
               >
-                Chat on WhatsApp
+                Chat on WhatsApp &rarr;
               </a>
             </div>
           </div>
@@ -110,9 +113,11 @@ export default function Contact() {
         {/* Form Column */}
         <div className="contact-form-col">
           {!isSubmitted ? (
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <h2>Book a Consultation</h2>
-              <p>Fill out the form below and we will get back to you within 24 hours.</p>
+            <form className="contact-form-card" onSubmit={handleSubmit}>
+              <div className="form-card-header">
+                <h2>Book a Consultation</h2>
+                <p>Fill out the form below and we will get back to you within 24 hours.</p>
+              </div>
 
               <div className="form-group-row">
                 <div className="form-group">

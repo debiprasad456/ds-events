@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.jpg';
 import './Navbar.css';
 
-export default function Navbar() {
+export default function Navbar({ onOpenQuote }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
@@ -26,40 +26,44 @@ export default function Navbar() {
   }, [location]);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="navbar-container container">
+    <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
+      <nav className="navbar container">
+        {/* Brand Logo */}
         <Link to="/" className="navbar-logo">
-          <img src={logo} alt="DS Events Logo" className="logo-img" />
+          <div className="logo-badge">
+            <img src={logo} alt="DS Events Logo" className="logo-img" />
+          </div>
           <div className="logo-text-group">
             <span className="logo-title">DS Events</span>
             <span className="logo-subtitle">A UNIT OF DIVERSE SOLUTIONS</span>
           </div>
         </Link>
 
-        {/* Hamburger Menu Toggle */}
-        <button 
-          className={`navbar-toggle ${isOpen ? 'active' : ''}`} 
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label="Toggle Navigation"
-        >
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </button>
-
-        {/* Navigation Links */}
+        {/* Navigation Menu */}
         <div className={`navbar-menu ${isOpen ? 'active' : ''}`}>
           <Link 
             to="/" 
             className={`navbar-item ${location.pathname === '/' ? 'active' : ''}`}
           >
-            About Us
+            Home
+          </Link>
+          <Link 
+            to="/about" 
+            className={`navbar-item ${location.pathname === '/about' ? 'active' : ''}`}
+          >
+            About
           </Link>
           <Link 
             to="/services" 
             className={`navbar-item ${location.pathname === '/services' ? 'active' : ''}`}
           >
             Services
+          </Link>
+          <Link 
+            to="/testimonials" 
+            className={`navbar-item ${location.pathname === '/testimonials' ? 'active' : ''}`}
+          >
+            Testimonials
           </Link>
           <Link 
             to="/gallery" 
@@ -71,19 +75,62 @@ export default function Navbar() {
             to="/contact" 
             className={`navbar-item ${location.pathname === '/contact' ? 'active' : ''}`}
           >
-            Contact Us
+            Contact
           </Link>
 
-          <Link to="/contact" className="navbar-btn-mobile">
-            Book Appointment &rarr;
-          </Link>
+          {/* Mobile Quick Phone & CTA */}
+          <div className="navbar-mobile-actions">
+            <a href="tel:+918260054398" className="mobile-phone-link">
+              📞 Have Question? <strong>+91 82600 54398</strong>
+            </a>
+            <button 
+              type="button" 
+              className="navbar-btn-mobile"
+              onClick={() => {
+                setIsOpen(false);
+                if (onOpenQuote) onOpenQuote('quote');
+              }}
+            >
+              Get A Quote &rarr;
+            </button>
+          </div>
         </div>
 
-        {/* Appointment CTA */}
-        <Link to="/contact" className="navbar-btn">
-          Book Appointment <span>&rarr;</span>
-        </Link>
-      </div>
-    </nav>
+        {/* Right Side: Phone Callout & CTA Button */}
+        <div className="navbar-right">
+          <a href="tel:+918260054398" className="navbar-phone-widget">
+            <div className="phone-icon-circle">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/>
+              </svg>
+            </div>
+            <div className="phone-text">
+              <span className="phone-label">Have Question?</span>
+              <span className="phone-number">8260054398</span>
+            </div>
+          </a>
+
+          <button 
+            type="button" 
+            className="navbar-cta-btn"
+            onClick={() => onOpenQuote && onOpenQuote('quote')}
+          >
+            Book Appointment <span>&rarr;</span>
+          </button>
+
+          {/* Hamburger Menu Toggle for Mobile */}
+          <button 
+            className={`navbar-toggle ${isOpen ? 'active' : ''}`} 
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label="Toggle Navigation Menu"
+          >
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </button>
+        </div>
+      </nav>
+    </header>
   );
 }
+
