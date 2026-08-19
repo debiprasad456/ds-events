@@ -14,7 +14,8 @@ const EVENT_TYPE_LABELS = {
   religious: 'Religious Events',
   birthday: 'Birthdays',
   wedding: 'Weddings',
-  anniversary: 'Anniversaries'
+  anniversary: 'Anniversaries',
+  other: 'Other'
 };
 
 export default function Contact() {
@@ -23,7 +24,10 @@ export default function Contact() {
     email: '',
     phone: '',
     eventType: 'corporate',
+    otherEventType: '',
     eventDate: '',
+    guestCount: '',
+    location: '',
     message: ''
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -38,15 +42,20 @@ export default function Contact() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const selectedEventType = EVENT_TYPE_LABELS[formData.eventType] || formData.eventType;
+    const baseEventType = EVENT_TYPE_LABELS[formData.eventType] || formData.eventType;
+    const selectedEventType = formData.eventType === 'other'
+      ? `Other: ${formData.otherEventType || 'Custom Event'}`
+      : baseEventType;
     
     const messageText = `*New Event Inquiry - DS Events*\n\n` +
-      `👤 *Name:* ${formData.name}\n` +
-      `📱 *Phone:* ${formData.phone}\n` +
-      `✉️ *Email:* ${formData.email}\n` +
-      `🎉 *Event Type:* ${selectedEventType}\n` +
-      `📅 *Preferred Date:* ${formData.eventDate || 'Not specified'}\n\n` +
-      `📝 *Event Details:*\n${formData.message}`;
+      `• *Name:* ${formData.name}\n` +
+      `• *Phone:* ${formData.phone}\n` +
+      `• *Email:* ${formData.email}\n` +
+      `• *Event Type:* ${selectedEventType}\n` +
+      `• *Preferred Date:* ${formData.eventDate}\n` +
+      `• *Guests:* ${formData.guestCount}\n` +
+      `• *Location:* ${formData.location}\n` +
+      `• *Notes:* ${formData.message || 'None'}`;
 
     const encodedMessage = encodeURIComponent(messageText);
     const whatsappUrl = `https://wa.me/918260054398?text=${encodedMessage}`;
@@ -129,7 +138,7 @@ export default function Contact() {
                     required 
                     value={formData.name} 
                     onChange={handleChange}
-                    placeholder="your name" 
+                    placeholder="e.g. Rahul Sharma" 
                   />
                 </div>
                 <div className="form-group">
@@ -146,20 +155,19 @@ export default function Contact() {
                 </div>
               </div>
 
-              <div className="form-group">
-                <label htmlFor="email">Email Address *</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email" 
-                  required 
-                  value={formData.email} 
-                  onChange={handleChange}
-                  placeholder="yourname@example.com" 
-                />
-              </div>
-
               <div className="form-group-row">
+                <div className="form-group">
+                  <label htmlFor="email">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    required 
+                    value={formData.email} 
+                    onChange={handleChange}
+                    placeholder="yourname@example.com" 
+                  />
+                </div>
                 <div className="form-group">
                   <label htmlFor="eventType">Event Type *</label>
                   <select 
@@ -181,8 +189,27 @@ export default function Contact() {
                     <option value="birthday">Birthdays</option>
                     <option value="wedding">Weddings</option>
                     <option value="anniversary">Anniversaries</option>
+                    <option value="other">Other (Specify in message)</option>
                   </select>
                 </div>
+              </div>
+
+              {formData.eventType === 'other' && (
+                <div className="form-group form-group-highlighted animate-fade-in">
+                  <label htmlFor="otherEventType">Specify Your Event Type / Requirements *</label>
+                  <textarea 
+                    id="otherEventType"
+                    name="otherEventType" 
+                    rows="2" 
+                    required
+                    placeholder="Describe your custom event type (e.g. Product Launch & Expo, College Fest, Golden Jubilee, Sports Meet, etc.)..."
+                    value={formData.otherEventType}
+                    onChange={handleChange}
+                  ></textarea>
+                </div>
+              )}
+
+              <div className="form-group-row">
                 <div className="form-group">
                   <label htmlFor="eventDate">Preferred Date *</label>
                   <input 
@@ -194,18 +221,42 @@ export default function Contact() {
                     onChange={handleChange}
                   />
                 </div>
+                <div className="form-group">
+                  <label htmlFor="guestCount">Estimated Guests *</label>
+                  <input 
+                    type="text" 
+                    id="guestCount" 
+                    name="guestCount" 
+                    required
+                    placeholder="e.g. 200 - 500"
+                    value={formData.guestCount} 
+                    onChange={handleChange}
+                  />
+                </div>
               </div>
 
               <div className="form-group">
-                <label htmlFor="message">Tell Us About Your Event *</label>
+                <label htmlFor="location">City / Location *</label>
+                <input 
+                  type="text" 
+                  id="location" 
+                  name="location" 
+                  required
+                  placeholder="e.g. Bhubaneswar / Cuttack / Puri"
+                  value={formData.location} 
+                  onChange={handleChange}
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="message">Additional Requirements (Optional)</label>
                 <textarea 
                   id="message" 
                   name="message" 
-                  required 
-                  rows="4" 
+                  rows="3" 
                   value={formData.message} 
                   onChange={handleChange}
-                  placeholder="Provide details such as guest count, location, themes, or specific requirements..."
+                  placeholder="Stage size, catering, floral decor, lighting..."
                 ></textarea>
               </div>
 
@@ -221,8 +272,8 @@ export default function Contact() {
               <div className="success-icon">✓</div>
               <h2>Inquiry Received!</h2>
               <p>Thank you for reaching out, <strong>{formData.name}</strong>.</p>
-              <p>We have received your request for a <strong>{formData.eventType}</strong> event on <strong>{formData.eventDate || 'a flexible date'}</strong>.</p>
-              <p className="success-note">One of our senior event coordinators will contact you via email ({formData.email}) or phone shortly.</p>
+              <p>We have received your request for a <strong>{EVENT_TYPE_LABELS[formData.eventType] || formData.eventType}</strong> event in <strong>{formData.location}</strong>.</p>
+              <p className="success-note">One of our senior event coordinators will connect with you right away on WhatsApp and email ({formData.email}).</p>
               <button className="reset-btn" onClick={() => setIsSubmitted(false)}>
                 Submit Another Inquiry
               </button>
