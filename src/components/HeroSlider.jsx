@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import './HeroSlider.css';
 
 // Import high-impact images for the slider
-import slideWedding from '../assets/images/wedding.jpg';
-import slideStage from '../assets/images/stage-show.jpg';
-import slideCorp from '../assets/images/corporate.jpg';
-import slideFashion from '../assets/images/fashion-shows1.jpeg';
+import slideWedding from '../assets/images/wedding.webp';
+import slideStage from '../assets/images/stage-show.webp';
+import slideCorp from '../assets/images/corporate.webp';
+import slideFashion from '../assets/images/fashion-shows1.webp';
 
 const slides = [
   {

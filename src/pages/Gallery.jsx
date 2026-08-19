@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import './Gallery.css';
 
-import imgCorporate from '../assets/images/corporate.jpg';
-import imgCorporate1 from '../assets/images/corporate 1.jpg';
-import imgCorporate2 from '../assets/images/corporate 2.jpg';
-import imgCorporate3 from '../assets/images/corporate 3.jpg';
-import imgCorporate4 from '../assets/images/corporate 4.jpg';
-import imgWedding from '../assets/images/wedding.jpg';
-import imgWedding1 from '../assets/images/wedding1.jpg';
-import imgWedding2 from '../assets/images/wedding2.jpg';
-import imgWedding3 from '../assets/images/wedding3.jpg';
-import imgWedding4 from '../assets/images/wedding4.jpg';
-import imgBrand from '../assets/images/brand promotion.jpg';
-import imgAward from '../assets/images/award-night.jpg';
-import imgEducational from '../assets/images/educational.jpg';
-import imgStageShow from '../assets/images/stage-show.jpg';
-import imgCultural from '../assets/images/cultural.jpg';
-import imgBirthday from '../assets/images/birthday.jpg';
-import imgFashion1 from '../assets/images/fashion-shows1.jpeg';
-import imgFashion2 from '../assets/images/fashion-shows2.jpeg';
-import imgFashion3 from '../assets/images/fashion-shows3.jpeg';
-import imgFashion4 from '../assets/images/fashion-shows4.jpeg';
-import imgFashion5 from '../assets/images/fashion-shows5.jpeg';
-import imgStageShow1 from '../assets/images/stage-show1.jpg';
-import imgStageShow2 from '../assets/images/stage-show2.jpg';
-import imgStageShow3 from '../assets/images/stage-show3.jpg';
-import imgStageShow4 from '../assets/images/stage-show4.jpg';
+import imgCorporate from '../assets/images/corporate.webp';
+import imgCorporate1 from '../assets/images/corporate 1.webp';
+import imgCorporate2 from '../assets/images/corporate 2.webp';
+import imgCorporate3 from '../assets/images/corporate 3.webp';
+import imgCorporate4 from '../assets/images/corporate 4.webp';
+import imgWedding from '../assets/images/wedding.webp';
+import imgWedding1 from '../assets/images/wedding1.webp';
+import imgWedding2 from '../assets/images/wedding2.webp';
+import imgWedding3 from '../assets/images/wedding3.webp';
+import imgWedding4 from '../assets/images/wedding4.webp';
+import imgBrand from '../assets/images/brand promotion.webp';
+import imgAward from '../assets/images/award-night.webp';
+import imgEducational from '../assets/images/educational.webp';
+import imgStageShow from '../assets/images/stage-show.webp';
+import imgCultural from '../assets/images/cultural.webp';
+import imgBirthday from '../assets/images/birthday.webp';
+import imgFashion1 from '../assets/images/fashion-shows1.webp';
+import imgFashion2 from '../assets/images/fashion-shows2.webp';
+import imgFashion3 from '../assets/images/fashion-shows3.webp';
+import imgFashion4 from '../assets/images/fashion-shows4.webp';
+import imgFashion5 from '../assets/images/fashion-shows5.webp';
+import imgStageShow1 from '../assets/images/stage-show1.webp';
+import imgStageShow2 from '../assets/images/stage-show2.webp';
+import imgStageShow3 from '../assets/images/stage-show3.webp';
+import imgStageShow4 from '../assets/images/stage-show4.webp';
 
 const galleryData = [
   { id: 1, title: 'Corporate Conference 2026', category: 'corporate', tag: 'Conference', span: 'tall', imageUrl: imgCorporate },

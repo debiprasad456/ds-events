@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import HeroSlider from '../components/HeroSlider';
 import TestimonialsSection from '../components/TestimonialsSection';
 import './AboutUs.css';
-import aboutUsImg from '../assets/images/about-us.png';
+import aboutUsImg from '../assets/images/about-us.webp';
 
 export default function AboutUs({ onOpenQuote }) {
   return (

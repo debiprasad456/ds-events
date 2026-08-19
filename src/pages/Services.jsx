@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import './Services.css';
-import corporateImg from '../assets/images/corporate.jpg';
-import politicalImg from '../assets/images/political.jpg';
-import birthdayImg from '../assets/images/birthday.jpg';
-import weddingImg from '../assets/images/wedding.jpg';
-import culturalImg from '../assets/images/cultural.jpg';
-import awardNightImg from '../assets/images/award-night.jpg';
-import stageShowImg from '../assets/images/stage-show.jpg';
-import religiousImg from '../assets/images/religious.jpg';
-import educationalImg from '../assets/images/educational.jpg';
+import corporateImg from '../assets/images/corporate.webp';
+import politicalImg from '../assets/images/political.webp';
+import birthdayImg from '../assets/images/birthday.webp';
+import weddingImg from '../assets/images/wedding.webp';
+import culturalImg from '../assets/images/cultural.webp';
+import awardNightImg from '../assets/images/award-night.webp';
+import stageShowImg from '../assets/images/stage-show.webp';
+import religiousImg from '../assets/images/religious.webp';
+import educationalImg from '../assets/images/educational.webp';
 import partiesImg from '../assets/images/parties.webp';
-import brandPromotionImg from '../assets/images/brand promotion.jpg';
-import anniversaryImg from '../assets/images/anniversary.jpg';
-import fashionImg from '../assets/images/fashion-shows1.jpeg';
+import brandPromotionImg from '../assets/images/brand promotion.webp';
+import anniversaryImg from '../assets/images/anniversary.webp';
+import fashionImg from '../assets/images/fashion-shows1.webp';
 
 const servicesData = [
   // Corporate & Commercial
