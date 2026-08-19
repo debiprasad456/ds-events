@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import './Gallery.css';
 
 import imgCorporate from '../assets/images/corporate.webp';
@@ -59,6 +60,24 @@ export default function Gallery() {
   const [filter, setFilter] = useState('all');
   const [selectedItem, setSelectedItem] = useState(null);
 
+  useEffect(() => {
+    if (selectedItem) {
+      document.body.style.overflow = 'hidden';
+      const handleKeyDown = (e) => {
+        if (e.key === 'Escape') {
+          setSelectedItem(null);
+        }
+      };
+      window.addEventListener('keydown', handleKeyDown);
+      return () => {
+        document.body.style.overflow = 'unset';
+        window.removeEventListener('keydown', handleKeyDown);
+      };
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+  }, [selectedItem]);
+
   const filteredItems = filter === 'all' 
     ? galleryData 
     : galleryData.filter(item => item.category === filter);
@@ -88,7 +107,7 @@ export default function Gallery() {
           {filteredItems.map(item => (
             <div 
               key={item.id} 
-              className={`gallery-item ${item.span}`}
+              className="gallery-item"
               onClick={() => setSelectedItem(item)}
             >
               {item.imageUrl ? (
@@ -119,8 +138,8 @@ export default function Gallery() {
         </div>
       </section>
 
-      {/* Lightbox Modal */}
-      {selectedItem && (
+      {/* Lightbox Modal Portaled Directly into document.body */}
+      {selectedItem && createPortal(
         <div className="lightbox-backdrop" onClick={() => setSelectedItem(null)}>
           <div className="lightbox-dialog" onClick={(e) => e.stopPropagation()}>
             <button className="lightbox-close" onClick={() => setSelectedItem(null)} aria-label="Close Lightbox">
@@ -134,7 +153,8 @@ export default function Gallery() {
               <h3>{selectedItem.title}</h3>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

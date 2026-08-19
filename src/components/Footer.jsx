@@ -6,12 +6,25 @@ import './Footer.css';
 export default function Footer({ onOpenQuote }) {
   const currentYear = new Date().getFullYear();
 
+  const handleFooterNav = (sectionId) => {
+    if (sectionId) {
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-top container">
         {/* Col 1: Brand Bio */}
         <div className="footer-col footer-brand">
-          <Link to="/" className="footer-logo">
+          <Link to="/" className="footer-logo" onClick={() => handleFooterNav(null)}>
             <div className="footer-logo-badge">
               <img src={logo} alt="DS Events Logo" className="logo-img" />
             </div>
@@ -40,10 +53,10 @@ export default function Footer({ onOpenQuote }) {
         <div className="footer-col">
           <h3 className="footer-heading">Quick Links</h3>
           <ul className="footer-links">
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About Us</Link></li>
+            <li><Link to="/" onClick={() => handleFooterNav(null)}>Home</Link></li>
+            <li><Link to="/about" onClick={() => handleFooterNav('about-intro')}>About Us</Link></li>
             <li><Link to="/services">Our Services</Link></li>
-            <li><Link to="/testimonials">Testimonials</Link></li>
+            <li><Link to="/testimonials" onClick={() => handleFooterNav('testimonials')}>Testimonials</Link></li>
             <li><Link to="/gallery">Photo Gallery</Link></li>
             <li><Link to="/contact">Contact & Booking</Link></li>
           </ul>

@@ -2,6 +2,10 @@
   background-color: var(--surface-base);
 }
 
+.about-intro {
+  scroll-margin-top: 100px;
+}
+
 /* Section Tag */
 .section-tag {
   display: inline-block;

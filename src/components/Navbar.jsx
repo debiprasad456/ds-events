@@ -25,11 +25,26 @@ export default function Navbar({ onOpenQuote }) {
     setIsOpen(false);
   }, [location]);
 
+  // Navigation click handler
+  const handleNavClick = (sectionId) => {
+    setIsOpen(false);
+    if (sectionId) {
+      setTimeout(() => {
+        const el = document.getElementById(sectionId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header className={`navbar-wrapper ${scrolled ? 'scrolled' : ''}`}>
       <nav className="navbar container">
         {/* Brand Logo */}
-        <Link to="/" className="navbar-logo">
+        <Link to="/" className="navbar-logo" onClick={() => handleNavClick(null)}>
           <div className="logo-badge">
             <img src={logo} alt="DS Events Logo" className="logo-img" />
           </div>
@@ -44,36 +59,42 @@ export default function Navbar({ onOpenQuote }) {
           <Link 
             to="/" 
             className={`navbar-item ${location.pathname === '/' ? 'active' : ''}`}
+            onClick={() => handleNavClick(null)}
           >
             Home
           </Link>
           <Link 
             to="/about" 
             className={`navbar-item ${location.pathname === '/about' ? 'active' : ''}`}
+            onClick={() => handleNavClick('about-intro')}
           >
             About
           </Link>
           <Link 
             to="/services" 
             className={`navbar-item ${location.pathname === '/services' ? 'active' : ''}`}
+            onClick={() => setIsOpen(false)}
           >
             Services
           </Link>
           <Link 
             to="/testimonials" 
             className={`navbar-item ${location.pathname === '/testimonials' ? 'active' : ''}`}
+            onClick={() => handleNavClick('testimonials')}
           >
             Testimonials
           </Link>
           <Link 
             to="/gallery" 
             className={`navbar-item ${location.pathname === '/gallery' ? 'active' : ''}`}
+            onClick={() => setIsOpen(false)}
           >
             Gallery
           </Link>
           <Link 
             to="/contact" 
             className={`navbar-item ${location.pathname === '/contact' ? 'active' : ''}`}
+            onClick={() => setIsOpen(false)}
           >
             Contact
           </Link>

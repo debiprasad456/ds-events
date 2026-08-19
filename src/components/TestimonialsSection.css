@@ -1,6 +1,7 @@
 .testimonials-section {
   background-color: var(--surface-bg);
   position: relative;
+  scroll-margin-top: 100px;
 }
 
 .section-tag {
