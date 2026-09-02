@@ -72,38 +72,53 @@ export default function HeroSlider({ onOpenQuote }) {
   return (
     <section 
       className="hero-slider"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Featured Event Services Showcase"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`hero-slide ${index === current ? 'active' : ''}`}
-          style={{ backgroundImage: `url(${slide.image})` }}
-        >
-          <div className="hero-overlay"></div>
-          <div className="hero-container container">
-            <div className="hero-content">
-              <span className="hero-badge">{slide.subtitle}</span>
-              <h1 className="hero-title">{slide.title}</h1>
-              <p className="hero-desc">{slide.description}</p>
+      {slides.map((slide, index) => {
+        const isActive = index === current;
+        return (
+          <div
+            key={slide.id}
+            className={`hero-slide ${isActive ? 'active' : ''}`}
+            style={{ backgroundImage: `url(${slide.image})` }}
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${index + 1} of ${length}: ${slide.title}`}
+            aria-hidden={!isActive}
+          >
+            <div className="hero-overlay"></div>
+            <div className="hero-container container">
+              <div className="hero-content">
+                <span className="hero-badge">{slide.subtitle}</span>
+                {index === 0 ? (
+                  <h1 className="hero-title">{slide.title}</h1>
+                ) : (
+                  <h2 className="hero-title">{slide.title}</h2>
+                )}
+                <p className="hero-desc">{slide.description}</p>
 
-              <div className="hero-actions">
-                <Link to={slide.primaryBtn.link} className="hero-btn primary">
-                  {slide.primaryBtn.text} &rarr;
-                </Link>
-                <button 
-                  type="button" 
-                  className="hero-btn secondary"
-                  onClick={() => onOpenQuote ? onOpenQuote('quote') : null}
-                >
-                  {slide.secondaryBtn.text}
-                </button>
+                <div className="hero-actions">
+                  <Link to={slide.primaryBtn.link} className="hero-btn primary" tabIndex={isActive ? 0 : -1}>
+                    {slide.primaryBtn.text} &rarr;
+                  </Link>
+                  <button 
+                    type="button" 
+                    className="hero-btn secondary"
+                    tabIndex={isActive ? 0 : -1}
+                    onClick={() => onOpenQuote ? onOpenQuote('quote') : null}
+                  >
+                    {slide.secondaryBtn.text}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
 
       {/* Navigation Arrows */}
       <button 

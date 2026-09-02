@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 import './Contact.css';
 
 const EVENT_TYPE_LABELS = {
@@ -19,6 +20,11 @@ const EVENT_TYPE_LABELS = {
 };
 
 export default function Contact() {
+  useDocumentTitle(
+    'Contact & Event Booking',
+    'Get in touch with DS Events in Bhubaneswar, Odisha. Request an instant quote, book an appointment, or consult with our expert event planning team.'
+  );
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',

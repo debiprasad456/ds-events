@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 import './Gallery.css';
 
 import imgCorporate from '../assets/images/corporate.webp';
@@ -57,6 +58,11 @@ const galleryData = [
 ];
 
 export default function Gallery() {
+  useDocumentTitle(
+    'Event Portfolio & Photo Gallery',
+    'View photos and setup galleries of weddings, corporate conferences, concerts, fashion runways, and celebrations managed by DS Events in Odisha.'
+  );
+
   const [filter, setFilter] = useState('all');
   const [selectedItem, setSelectedItem] = useState(null);
 

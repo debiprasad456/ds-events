@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import useDocumentTitle from '../hooks/useDocumentTitle';
 import './Services.css';
 import corporateImg from '../assets/images/corporate.webp';
 import politicalImg from '../assets/images/political.webp';
@@ -125,6 +126,11 @@ const servicesData = [
 ];
 
 export default function Services({ onOpenQuote }) {
+  useDocumentTitle(
+    'Event Planning & Hospitality Services',
+    'Explore DS Events’ comprehensive event management services in Odisha: corporate conferences, stage productions, luxury weddings, fashion shows, and brand activations.'
+  );
+
   const [activeFilter, setActiveFilter] = useState('all');
 
   const filteredServices = activeFilter === 'all' 
