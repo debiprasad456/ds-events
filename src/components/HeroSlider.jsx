@@ -111,12 +111,19 @@ export default function HeroSlider({ onOpenQuote }) {
           <div
             key={slide.id}
             className={`hero-slide ${isActive ? 'active' : ''}`}
-            style={{ backgroundImage: `url(${slide.image})` }}
             role="group"
             aria-roledescription="slide"
             aria-label={`${index + 1} of ${length}: ${slide.title}`}
             aria-hidden={!isActive}
           >
+            <img 
+              src={slide.image} 
+              alt={slide.title}
+              className="hero-slide-img"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "low"}
+              decoding={index === 0 ? "sync" : "async"}
+            />
             <div className="hero-overlay"></div>
             <div className="hero-container container">
               <div className="hero-content">

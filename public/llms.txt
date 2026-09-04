@@ -1,0 +1,16 @@
+# DS Events
+> Premier Event Management & Hospitality Services Provider in Bhubaneswar, Odisha.
+
+DS Events (A Unit of Diverse Solutions) is Odisha's leading full-service event planning company. We specialize in luxury weddings, corporate conferences, live stage concerts, fashion shows, brand activations, and cultural festivals across Bhubaneswar and Odisha.
+
+## Contact Information
+- **Phone**: [+91 82600 54398](tel:+918260054398)
+- **Email**: [diversesolutionsevents@gmail.com](mailto:diversesolutionsevents@gmail.com)
+- **Address**: 3521/8716, Palasuni, Rasulgarh, Bhubaneswar, Odisha 751025
+
+## Main Pages & Services
+- [Home](https://ds-events-five.vercel.app/): DS Events homepage showcasing featured events and capabilities.
+- [About Us](https://ds-events-five.vercel.app/about): Company background, mission, values, and client testimonials.
+- [Services](https://ds-events-five.vercel.app/services): Complete portfolio of event management services including corporate galas, weddings, award ceremonies, and concerts.
+- [Gallery](https://ds-events-five.vercel.app/gallery): Visual showcase of past stage setups, wedding decor, and corporate productions.
+- [Contact & Quote](https://ds-events-five.vercel.app/contact): Direct booking, venue inquiries, and customized quote requests.

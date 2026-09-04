@@ -119,7 +119,11 @@ export default function Navbar({ onOpenQuote }) {
 
         {/* Right Side: Phone Callout & CTA Button */}
         <div className="navbar-right">
-          <a href="tel:+918260054398" className="navbar-phone-widget">
+          <a 
+            href="tel:+918260054398" 
+            className="navbar-phone-widget"
+            aria-label="Call DS Events at +91 8260054398"
+          >
             <div className="phone-icon-circle">
               <svg viewBox="0 0 24 24" fill="currentColor">
                 <path d="M6.62 10.79a15.05 15.05 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.72 11.72 0 003.68.59 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1 11.72 11.72 0 00.59 3.68 1 1 0 01-.24 1.02l-2.23 2.09z"/>
