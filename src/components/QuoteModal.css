@@ -23,7 +23,29 @@
   position: relative;
   box-shadow: var(--shadow-dark);
   max-height: 90vh;
+  max-height: 90dvh;
   overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 480px) {
+  .modal-backdrop {
+    padding: 12px;
+  }
+  .modal-content {
+    padding: 24px 18px;
+    max-height: 92dvh;
+    border-radius: var(--radius-sm);
+  }
+  .modal-close-btn {
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+  }
+  .modal-header h2 {
+    font-size: 22px;
+  }
 }
 
 .modal-close-btn {
@@ -33,8 +55,8 @@
   font-size: 28px;
   color: var(--text-tertiary);
   line-height: 1;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -115,6 +137,14 @@
   padding: 10px 14px;
   transition: var(--transition-fast);
   outline: none;
+}
+
+@media (max-width: 768px) {
+  .modal-field input,
+  .modal-field select,
+  .modal-field textarea {
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+  }
 }
 
 .modal-field input:focus,

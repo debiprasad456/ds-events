@@ -6,6 +6,7 @@
   max-height: 780px;
   overflow: hidden;
   background-color: var(--surface-dark);
+  touch-action: pan-y;
 }
 
 .hero-slide {
